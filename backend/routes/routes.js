@@ -3,14 +3,14 @@ import express from "express";
 
 //import functions from controller
 import {
-  showProducts
-} from "../controllers/product.js";
+  showAllCars
+} from "../controllers/car.js";
 
 //init express router
 const router = express.Router();
 
 //get all product
-router.get("/products", showProducts);
+router.get("/getAllCars", showAllCars);
 
 
 //export default router
