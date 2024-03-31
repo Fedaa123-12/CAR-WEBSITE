@@ -5,7 +5,7 @@ import mysql from "mysql2";
 const db = mysql.createConnection({
     host: "sql8.freesqldatabase.com",
     user: "sql8695053",
-    password: "CiE24Lf8kJ",
+    password: "",
     database: "sql8695053",
     //default port 3306
 });
