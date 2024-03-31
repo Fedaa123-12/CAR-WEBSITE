@@ -7,7 +7,6 @@ import {
   showCarByID,
   createCar
 } from "../controllers/car.js";
-import { getCarById } from "../models/carModel.js";
 
 //init express router
 const router = express.Router();
