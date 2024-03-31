@@ -12,8 +12,11 @@ import { getCarById } from "../models/carModel.js";
 //init express router
 const router = express.Router();
 
+
+
+
 //get all product
-router.get("/getAllCars", showAllCars);
+router.get("/", showAllCars);
 
 //get car by ID
 router.get("/getCarByID",  showCarByID);
