@@ -6,6 +6,7 @@
 </template>
 
 <style>
-@import '~bulma/css/bulma.css';
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap";
 
 </style>

@@ -1,47 +1,52 @@
 <template>
-    <table class = "table is-striped is-bordered mt-2 is-fullwidth">
-    <tr>
-        <th>Brand</th>
-        <th>Model</th>
-    </tr>
-    <tbody>
-        <tr v-for="item in items" :key="item.ID">
-            <td>
-                {{ item.Name }}
-            </td>
-            <td>
-                {{ item.Model }}
-            </td>
-
-            
-
-
-        </tr>
-    </tbody>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Brand</th>
+                <th scope="col">Model</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="item in items" :key="item.ID">
+                <td scope="col">
+                    {{ item.Name }}
+                </td>
+                <td scope="col">
+                    {{ item.Model }}
+                </td>
+                <td :id = item.ID  scope="col" @click = >
+                    <button>Delete</button>
+                </td>
+            </tr>
+        </tbody>
     </table>
-    </template>
+</template>
 
 
 <script>
 import axios from "axios";
-export default{
-    data(){
-        return{
+export default {
+    data() {
+        return {
             items: [],
         }
     },
-    created(){
+    created() {
         this.getCars();
-        
+
     },
-    methods:{
-        async getCars(){
-            try{
+    methods: {
+        async getCars() {
+            try {
                 const response = await axios.get("https://carwebsiteapi.cyclic.app");
                 this.items = response.data;
-            }catch(err){
+            } catch (err) {
                 console.log(err);
             }
+        },
+        async deleteCars(){
+       
         }
     }
 };
