@@ -43,5 +43,16 @@ export const insertCar  = (data,result) => {
 }
 
 
-//"INSERT INTO `Avaialable cars` (Name, Model, Mileage, MotExp, Reg,KeyNo,CatStat,Colour,Value,FuelType,ExtraFeatures )"
-//+"VALUES("+data[0] "'Name', 'Model', 65.4, 'MotExp', 'Reg','KeyNo','CatStat','Colour',96.4,'FuelType','ExtraFeatures')",
+
+//Delete car
+export const deleteCar  = (id,result) => {
+  db.query("DELETE FROM `Avaialable cars` WHERE ID = ?",[id],
+  (err, results) => {
+    if (err) {
+      console.log(err);
+      result(err, null);
+    } else {
+      result(null, results);
+    }
+  });
+}
