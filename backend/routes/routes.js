@@ -5,7 +5,8 @@ import express from "express";
 import {
   showAllCars,
   showCarByID,
-  createCar
+  createCar,
+  deleteCarId
 } from "../controllers/car.js";
 import { getCarById } from "../models/carModel.js";
 
@@ -24,5 +25,11 @@ router.get("/getCarByID",  showCarByID);
 
 //add new car
 router.post("/newCar" , createCar);
+
+
+//delete car by id
+router.delete("/deleteById",deleteCarId)
+
+
 //export default router
 export default router;

@@ -2,7 +2,8 @@
 import {
     getCars,
     getCarById,
-    insertCar
+    insertCar,
+    deleteCar
   } from "../models/carModel.js";
   
   //get all cars
@@ -33,6 +34,20 @@ export const showCarByID = (req, res) => {
   export const createCar = (req, res) => {
     const data = req.body;
     insertCar(data,(err, results) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json(results);
+      }
+    });
+  };
+
+
+
+  //delete car by id
+  export const deleteCarId = (req, res) => {
+    const data = req.query.id;
+    deleteCar(data,(err, results) => {
       if (err) {
         res.send(err);
       } else {
