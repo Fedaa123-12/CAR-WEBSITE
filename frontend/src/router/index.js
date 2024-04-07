@@ -3,10 +3,16 @@ import index from '../views/index.vue'
 
 const routes = [
   {
+    path: '/car/:id',
+    name: 'carVue',
+    component: () => import('../views/carVue.vue')
+  },
+  {
     path: "/",
     name : "index",
     component : index
   },
+
   {
     path: '/about',
     name: 'about',

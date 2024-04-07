@@ -9,4 +9,14 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "bootstrap";
 
+.link div{
+  
+}
+
+
+
+.link {
+  text-decoration: none !important;
+}
+
 </style>
