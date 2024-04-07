@@ -1,6 +1,3 @@
-<script setup>
-</script>
-
 <template>
 <div class="container">
 <nav class="navbar navbar-expand-lg navbar-transparent bg-transparent">

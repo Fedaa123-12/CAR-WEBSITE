@@ -15,6 +15,7 @@ export default {
             try {
                 const response = await axios.get("https://car-website-2.onrender.com/");
                 this.items = response.data;
+                console.log(this.items)
 
             } catch (err) {
                 console.log(err);
@@ -57,8 +58,6 @@ export default {
                             </div>
                         </router-link>
                     </div>
-                   
-
                 </div>
             </div>
         </div>

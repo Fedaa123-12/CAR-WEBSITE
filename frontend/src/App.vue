@@ -1,4 +1,16 @@
+<script>
+import Navbar from './components/Navbar.vue';
+
+export default {
+  components: {
+    Navbar // Register the Navbar component
+  }
+};
+</script>
+
+
 <template>
+  <Navbar />
   <nav>
 
   </nav>
