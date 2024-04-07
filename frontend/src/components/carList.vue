@@ -1,32 +1,4 @@
-<<<<<<< Updated upstream
-<template>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Brand</th>
-                <th scope="col">Model</th>
-                <th scope="col">Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="item in items" :key="item.ID">
-                <td scope="col">
-                    {{ item.Name }}
-                </td>
-                <td scope="col">
-                    {{ item.Model }}
-                </td>
-                <td :id = item.ID  scope="col" @click = >
-                    <button>Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</template>
 
-
-=======
->>>>>>> Stashed changes
 <script>
 import axios from "axios";
 export default {
@@ -48,14 +20,6 @@ export default {
                 console.log(err);
             }
         },
-<<<<<<< Updated upstream
-        async deleteCars(){
-       
-        }
-    }
-};
-</script>
-=======
 
     }
 };
@@ -120,4 +84,3 @@ export default {
                 console.log(err);
             }
         },-->
->>>>>>> Stashed changes

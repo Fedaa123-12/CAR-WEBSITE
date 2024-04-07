@@ -9,9 +9,6 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "bootstrap";
 
-.link div{
-  
-}
 
 
 
