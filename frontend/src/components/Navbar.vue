@@ -14,12 +14,14 @@
           <a class="nav-link fw-bold" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fw-bold" aria-current="page" href="/">Our mission</a>
+          <a class="nav-link fw-bold" aria-current="page" href="/contact">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fw-bold" aria-current="page" href="/">Contact</a>
+          <a class="nav-link fw-bold" aria-current="page" href="/about">About Us</a>
         </li>
-        <li class="nav-item dropdown">
+
+        
+        <!-- DISABLED <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             Dropdown
@@ -32,7 +34,7 @@
             </li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
-        </li>
+        </li> -->
 
       </ul>
       <!--DISABLED <form class="d-flex">

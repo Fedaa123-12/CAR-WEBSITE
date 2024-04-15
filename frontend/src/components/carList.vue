@@ -21,6 +21,15 @@ export default {
                 console.log(err);
             }
         },
+        async refreshOnError() {
+            window.location.reload();
+        },
+        getTopThreeItems() {
+            // Sort the items array by ID in descending order
+            const sortedItems = this.items.sort((a, b) => b.ID - a.ID);
+            // Return the first three items
+            return sortedItems.slice(0, 3);
+        }
 
     }
 };
@@ -39,15 +48,23 @@ export default {
                     </div>
                 </div>
 
-            
+
             </div>
 
             <br>
             <div class="container">
-                <h1 style="text-align: center;">Explore our available cars</h1><hr>
+
+
+                <h1 style="text-align: center;">Recenly Added cars</h1>
+                <hr>
                 <div v-if="items">
+
+                    <!-- <div v-if="items[0].errno === '104' " >
+                        {{  refreshOnError() }}
+                    </div> -->
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                        <div class="col" v-for="item in items" :key="item.ID">
+                        <div class="col" v-for="item in getTopThreeItems()" :key="item.ID">
+
                             <router-link class="link" :to="{ name: 'carVue', params: { id: item.ID } }">
                                 <div class="card shadow-sm">
 
@@ -55,15 +72,15 @@ export default {
                                         xmlns="http://www.w3.org/2000/svg" role="img"
                                         aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
                                         focusable="false">
-                                        <title>Placeholder</title>
-                                        <image :href="item.Image" width="100%" height="100%" />
+                                        <image :href="item.Image.split(',')[0].trim()" width="100%" height="100%" />
                                     </svg>
                                     <div class="card-body">
                                         <p class="card-text">
 
                                             <strong>Brand:</strong> {{ item.Name }}<br>
-
-                                            <strong>Model:</strong> {{ item.Model }}
+                                            <strong>Model:</strong> {{ item.Model }}<br>
+                                            <strong>Mileage:</strong> {{ item.Mileage }}<br>
+                                            <strong>Hpi Status:</strong> {{ item.CatStat }}
                                         </p>
                                         <div class="d-flex justify-content-between align-items-center">
 
@@ -74,7 +91,16 @@ export default {
 
                                 </div>
                             </router-link>
+
                         </div>
+                    </div>
+                    <br>
+                    <div class="col d-flex justify-content-center">
+
+                        <a class="view-more alink" href="/cars"> <button type="button"
+                                class="view-more btn btn-primary btn-lg">View More</button></a>
+
+
                     </div>
                 </div>
                 <div v-else class="d-flex justify-content-center align-items-center" style="height: 300px;">
