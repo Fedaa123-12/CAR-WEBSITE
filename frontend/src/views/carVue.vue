@@ -1,6 +1,5 @@
 <template>
     <div class="container">
-
         <div v-if="items">
             <!-- Container -->
             <div class="container">
@@ -42,13 +41,13 @@
                         </div>
                         <!-- Gallary view end-->
                     </div>
-
+                    <!-- Car description-->
                     <div class="col-md-4">
                         <div class="item-description">
                             <h3>{{ items.Name }} {{ items.Model }}</h3>
                             <ul class="item-details">
-                                <li><strong>Value:</strong> {{ items.Value }}</li>
-                                <li><strong>Mileage:</strong> {{ items.Mileage }}</li>
+                                <li><strong>Value:</strong> {{ formatPrice(items.Value) }}</li>
+                                <li><strong>Mileage:</strong> {{ formatMileage(items.Mileage) }}</li>
                                 <li><strong>Year:</strong> {{ items.YearOfManu }}</li>
                                 <li><strong>MOT Expiry:</strong> {{ items.MotExp }}</li>
                                 <li><strong>Key Count:</strong> {{ items.KeyNo }}</li>
@@ -59,19 +58,18 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- Car description-->
+                    <!-- Car description end-->
                 </div>
                 <!-- Row End-->
-                <div style="border: 1px solid #ccc;">
+                <div style="border: 1px solid #ccc; padding: 10px;">
                     <h1>Car Description:</h1>
-                    <h5>{{ items.Description }}</h5>
+                    <div v-for="(line, index) in items.Description.split('-')" :key="index">
+                        <h5>- {{ line.trim() }}</h5>
+                    </div>
                 </div>
             </div>
             <!-- Container end-->
-
         </div>
-
-
         <div v-else class="d-flex justify-content-center align-items-center" style="height: 300px;">
             <div class="spinner-border" role="status" style="width: 5rem; height: 5rem;">
                 <span class="visually-hidden">Loading...</span>
@@ -83,7 +81,6 @@
 
 <script>
 import axios from "axios";
-
 export default {
     data() {
         return {
@@ -97,11 +94,29 @@ export default {
     methods: {
         async getCarById(id) {
             try {
-                const response = await axios.get("https://car-website-2.onrender.com/getCarByID?id=" + id);
+                const response = await axios.get("https://carwebsite-backend-production.up.railway.app/getCarByID?id=" + id);
                 this.items = response.data;
             } catch (err) {
                 console.log(err);
             }
+        },
+        formatMileage(mileage) {
+            // Format the mileage
+            return mileage.toLocaleString('en-US');
+        },
+        formatPrice(price) {
+            // Format the price as currency
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'GBP',
+            }).format(price);
+        },
+        sortWithAnimation(sortFunction) {
+            const container = $(".container"); // Assuming .container is the parent of the items to be sorted
+            container.fadeOut("fast", () => {
+                sortFunction();
+                container.fadeIn("medium");
+            });
         },
     }
 }
@@ -131,5 +146,35 @@ export default {
 
 .item-details li {
     font-size: large;
+}
+/* Custom CSS for spacing and alignment */
+.carousel-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 500px;
+    /* Adjust the maximum height as needed */
+}
+.item-description {
+    padding: 20px;
+}
+.carousel-item {
+    width: 100%;
+    /* Adjust the width as needed */
+    height: 400px;
+    /* Adjust the height as needed */
+    overflow: hidden;
+}
+.carousel-item iframe,
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Keeps the original aspect ratio while fitting the image within the container */
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+   background-color: rgb(147, 147, 147);
+   border-radius: 20px;
 }
 </style>

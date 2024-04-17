@@ -69,58 +69,11 @@ export default {
 }
 
 
-/* Custom CSS for spacing and alignment */
-.gallery-item {
-  display: flex;
-  margin-bottom: 20px;
-}
-
-.gallery-item img {
-  max-width: 100%;
-  height: auto;
-}
-
-.item-description {
-  padding: 20px;
-}
-
-
-.carousel-item img,
-.carousel-item iframe {
-  width: 100%;
-  height: 400px;
-  /* Adjust the height as needed */
-  object-fit: cover;
-}
 
 
 
 
 
-.custom-select-box select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 20%;
-  padding: 8px 40px 8px 12px;
-  border: 1px solid #ced4da;
-  border-radius: 20px;
-  outline: none;
-  background-color: #fff;
-  font-size: 16px;
-}
 
-.custom-select-box select::-ms-expand {
-  display: none;
-}
 
-.custom-select-box::after {
-  content: "\f078";
-  font-family: FontAwesome;
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-50%);
-  color: #495057;
-}
 </style>

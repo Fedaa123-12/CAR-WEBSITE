@@ -15,9 +15,9 @@ export default {
     methods: {
         async getCars() {
             try {
-                
-                const response = await axios.get("https://car-website-2.onrender.com/");
-                
+
+                const response = await axios.get("https://carwebsite-backend-production.up.railway.app/");
+
                 this.sortWithAnimation(() => this.items = response.data);
                 this.sortWithAnimation(() => this.originalItems = response.data.slice());
             } catch (err) {
@@ -50,6 +50,13 @@ export default {
                 sortFunction();
                 container.fadeIn("medium");
             });
+        },
+        formatPrice(price) {
+            // Format the price as currency
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'GBP',
+            }).format(price);
         }
     }
 };
@@ -61,15 +68,18 @@ export default {
 
 <template>
     <main>
+
         <div class="album py-5">
             <div class="container">
                 <h1 style="text-align: center;">Our Available Cars</h1>
 
                 <div>
-                    <div class="custom-select-box">
-                        <select class="select" aria-label="Default select example" @change="sortCars">
-                            <option selected value="Suggested">Suggested</option>
-                            <option value="Recent">Recenly Added</option>
+                 
+                    <div class="custom-select">
+                        <select aria-label="Default select example" @change="sortCars">
+                            <option selected disabled>Select an option</option>
+                            <option value="Suggested">Suggested</option>
+                            <option value="Recent">Recently Added</option>
                             <option value="ValueLowToHigh">Price (Low To High)</option>
                             <option value="ValueHighToLow">Price (High To Low)</option>
                             <option value="Mileage">Mileage</option>
@@ -96,12 +106,13 @@ export default {
                                     <!-- Description on the right -->
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h3 class="card-title">{{ item.Value }}</h3>
+                                            <h3 class="card-title">{{ formatPrice(item.Value) }}</h3>
                                             <h5 class="card-text">{{ item.Name }} {{ item.Model }} </h5>
-                                            <p class="card-text"> <strong>{{ item.YearOfManu }} | {{ item.CatStat }} | MotExp: {{ item.MotExp }} </strong><br>
-                                                {{ item.FuelType }}  | Available Keys: {{ item.KeyNo }}
+                                            <p class="card-text"> <strong>{{ item.YearOfManu }} | {{ item.CatStat }} |
+                                                    MotExp: {{ item.MotExp }} </strong><br>
+                                                {{ item.FuelType }} | Available Keys: {{ item.KeyNo }}
                                             </p>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -125,3 +136,28 @@ export default {
 
 
 </template>
+
+<style>
+.custom-select  {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 300px; /* Adjust as needed */
+  border-radius: 20px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #fff;
+  appearance: none; /* Removes default appearance */
+}
+
+select:focus {
+  outline: none;
+  border-color: #007bff; /* Highlight border color on focus */
+}
+</style>

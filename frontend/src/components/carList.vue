@@ -13,7 +13,7 @@ export default {
     methods: {
         async getCars() {
             try {
-                const response = await axios.get("https://car-website-2.onrender.com/");
+                const response = await axios.get("https://carwebsite-backend-production.up.railway.app/");
                 this.items = response.data;
                 console.log(this.items)
 
@@ -29,6 +29,13 @@ export default {
             const sortedItems = this.items.sort((a, b) => b.ID - a.ID);
             // Return the first three items
             return sortedItems.slice(0, 3);
+        },
+        formatPrice(price) {
+            // Format the price as currency
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'GBP',
+            }).format(price);
         }
 
     }
@@ -76,7 +83,7 @@ export default {
                                     </svg>
                                     <div class="card-body">
                                         <p class="card-text">
-
+                                            <strong>Value:</strong> {{ formatPrice(item.Value) }}<br>
                                             <strong>Brand:</strong> {{ item.Name }}<br>
                                             <strong>Model:</strong> {{ item.Model }}<br>
                                             <strong>Mileage:</strong> {{ item.Mileage }}<br>
